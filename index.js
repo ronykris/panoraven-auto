@@ -1,7 +1,8 @@
 import puppeteer from "puppeteer-extra";
 import stealthmode from "puppeteer-extra-plugin-stealth";
-import express from 'express'
+import dotenv from 'dotenv'
 
+dotenv.config()
 puppeteer.use(stealthmode)
 
 
@@ -13,13 +14,13 @@ export const getEmbedCode = async(file) => {
         const page = await browser.newPage();
 
         await page.setUserAgent('Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36');
-        const cookie = { 'panoraven_session': 'eyJpdiI6Im9JaElOb215eFd4Yi9Dc1B5TXBnMXc9PSIsInZhbHVlIjoidlRSUURLenNJSk41SnhoTURnOGVjUHdlM2kxOGJUQ21JeE4zUnVRbDhEYUVrMnR6WlVxY21WTDJRMksrOFFGUjNha2srWVBLTTdYWHJuTjIzVU5kdlNqWERHOXFHS1VIWEtJMkwwdXFydk92QUxtSzBLY0YxazhoeG1vOEliVWQiLCJtYWMiOiI0ZmI3MDg0YzViYjA2ZGU3YjUzYzIwMjc5ODQ0OTAzYjAwZDFkZWRmOThlOTI3NDU3OGZmYzU0ODFlNzVmNzEzIiwidGFnIjoiIn0%3D' }
-            // go to the target web
+
+        // go to the target web
         await page.goto('https://panoraven.com/')
 
         await page.setCookie({
             name: 'panoraven_session',
-            value: 'eyJpdiI6IkNQMjRDTlRNdFZydDRkY0F6eThUZXc9PSIsInZhbHVlIjoiV0NBUlNkbGNXM1hDMGwwL3R0Zy9aQmNLSEdXWUZkWVN5cjd6dFdoRFR1am5kcERjc2tZdk9zSTdLVzJSbnVCVjY0NDZFNHpJZVFjcFIzeEpFVGMwUUtYZTJSNGJVRUUvQWVZUlNLemdhWUtENXExcXN1Q29CVFF3SEladlNGOXQiLCJtYWMiOiI2OTg2MzgwYTJlYzE0ZGEzYjgzYTk3ZDE0MDVkNTc3OTVjNGMyOTIyNGIwMjRiOWRiYTg3NTljMGRkOTQ5ZGUyIiwidGFnIjoiIn0%3D'
+            value: process.env.KEY
         })
         await page.goto('https://panoraven.com/en/share-360-photo')
 
