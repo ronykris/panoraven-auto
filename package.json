@@ -14,7 +14,7 @@
     "type": "module",
     "scripts": {
         "test": "nodemon index.js",
-        "start": "nodemon app.js"
+        "start": "node app.js"
     },
     "author": "",
     "license": "ISC",

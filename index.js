@@ -9,7 +9,14 @@ puppeteer.use(stealthmode)
 export var value = ''
 export const getEmbedCode = async(file) => {
     try {
-        let launchOptions = { headless: false, defaultViewport: null, args: ['--start-maximized'] };
+        let launchOptions = {
+            headless: false,
+            defaultViewport: null,
+            executablePath: '/usr/bin/google-chrome',
+            args: ['--start-maximized',
+                '--no-sandbox',
+            ]
+        };
         const browser = await puppeteer.launch(launchOptions);
         const page = await browser.newPage();
 
@@ -20,7 +27,8 @@ export const getEmbedCode = async(file) => {
 
         await page.setCookie({
             name: 'panoraven_session',
-            value: process.env.KEY
+            //value: process.env.KEY,
+            value: 'eyJpdiI6Im9JaElOb215eFd4Yi9Dc1B5TXBnMXc9PSIsInZhbHVlIjoidlRSUURLenNJSk41SnhoTURnOGVjUHdlM2kxOGJUQ21JeE4zUnVRbDhEYUVrMnR6WlVxY21WTDJRMksrOFFGUjNha2srWVBLTTdYWHJuTjIzVU5kdlNqWERHOXFHS1VIWEtJMkwwdXFydk92QUxtSzBLY0YxazhoeG1vOEliVWQiLCJtYWMiOiI0ZmI3MDg0YzViYjA2ZGU3YjUzYzIwMjc5ODQ0OTAzYjAwZDFkZWRmOThlOTI3NDU3OGZmYzU0ODFlNzVmNzEzIiwidGFnIjoiIn0%3D'
         })
         await page.goto('https://panoraven.com/en/share-360-photo')
 
