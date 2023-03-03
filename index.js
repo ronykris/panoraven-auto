@@ -12,7 +12,7 @@ export const getEmbedCode = async(file) => {
         let launchOptions = {
             headless: false,
             defaultViewport: null,
-            executablePath: '/usr/bin/google-chrome',
+            //executablePath: '/usr/bin/google-chrome',
             args: ['--start-maximized',
                 '--no-sandbox',
             ]
